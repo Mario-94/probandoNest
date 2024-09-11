@@ -52,7 +52,13 @@ export  class createCatDto{
 @Controller('cats')
 export class DataCatsController {
     @Post()
-    createCat(@Body() createCatDto: createCatDto): string {
-        return `Hola ${createCatDto.name} tienes ${createCatDto.age} años`;
+    async createCat(@Body() createCatDto: createCatDto):  Promise<string> {
+        const message=await new Promise<string>((resolve)=>{
+            setTimeout(() => {
+                resolve(`Hola ${createCatDto.name} tienes ${createCatDto.age} años`)
+        },1000)
+    })
+        return  message;
+
     }
 }
