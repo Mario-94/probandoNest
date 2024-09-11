@@ -32,3 +32,13 @@ export class GatoController {
   }
 }
 
+
+//Esto me permite tener ultiples dominios o subdominios en la misma aplicacion de nest
+@Controller({host:'admin.example.com'})
+export class  AdminController {
+    @Get()
+    index():string{
+        return "Admin page";
+    }
+}
+
