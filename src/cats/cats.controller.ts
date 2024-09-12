@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, HttpStatus } from '@nestjs/common';
 import { AppService } from 'src/app.service';
 import { createCatDto } from './dto';
 // ruta creada con el comando de cli de nest
@@ -48,13 +48,15 @@ export class  AdminController {
 @Controller('cats')
 export class DataCatsController {
     @Post()
-    async createCat(@Body() createCatDto: createCatDto):  Promise<string> {
+    async createCat(@Body() createCatDto: createCatDto):  Promise<{statusCode:number, message:string}> {
         const message=await new Promise<string>((resolve)=>{
             setTimeout(() => {
                 resolve(`Hola ${createCatDto.name} tienes ${createCatDto.age} años`)
         },1000)
     })
-        return  message;
+        return  {statusCode:HttpStatus.CREATED,
+            message
+        };
 
     }
 }
