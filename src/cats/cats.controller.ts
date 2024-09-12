@@ -1,13 +1,14 @@
 import { Body, Controller, Get, Param, Post, HttpStatus } from '@nestjs/common';
 import { AppService } from 'src/app.service';
 import { createCatDto } from './dto';
+import { CatsService } from './cats.service';
 // ruta creada con el comando de cli de nest
 @Controller('cats')
 export class CatsController {
-    constructor(private readonly appService:AppService){}
+    constructor(private readonly catServices:CatsService){}
     @Get()
     getHelloCat(): string{
-        return "Este es el controlador para getHelloCats";
+        return this.catServices.helloCat();
     }
 
 }
