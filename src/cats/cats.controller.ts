@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from 'src/app.service';
+import { createCatDto } from './dto';
 // ruta creada con el comando de cli de nest
 @Controller('cats')
 export class CatsController {
@@ -43,12 +44,7 @@ export class  AdminController {
 }
 
 // Realizando una peticion post, utilizando una estructura para mi clasecon createCatDto, es como tipar la informacion o darle los parametros que necesito y el tipo de dato que espero
-export  class createCatDto{
-    name:string;
-    age:number;
-    bread:string;
 
-}
 @Controller('cats')
 export class DataCatsController {
     @Post()
